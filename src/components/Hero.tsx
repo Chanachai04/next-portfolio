@@ -6,7 +6,7 @@ import { ArrowRight, Github, FileText } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
-  const { dict } = useLanguage();
+  const { dict, language } = useLanguage();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -35,10 +35,16 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            {dict.hero.name}
-            <div id="verification-element-987" style={{ display: "none" }}>
-              VERIFIED_CODE_UPDATED
-            </div>
+            {language === "th" ? (
+              <>
+                <span className="inline-block mr-3">ชนะชัย</span>
+                <span className="block min-[450px]:inline-block">
+                  เบญมาตย์
+                </span>
+              </>
+            ) : (
+              dict.hero.name
+            )}
           </motion.h1>
           <motion.div
             className="text-2xl md:text-3xl font-semibold bg-clip-text text-transparent bg-linear-to-r from-sky-500 to-blue-600 dark:from-sky-400 dark:to-blue-500"
@@ -115,7 +121,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="flex-1 hidden md:flex justify-center"
+          className="flex-1 hidden lg:flex justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.5 }}

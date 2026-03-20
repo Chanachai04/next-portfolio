@@ -76,11 +76,16 @@ export function Certificates() {
 
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const index = Math.round(scrollLeft / clientWidth);
-      setActiveIndex(Math.min(index, totalPages - 1));
+      const el = scrollRef.current;
+      const firstChild = el.firstElementChild as HTMLElement;
+      if (firstChild) {
+        const itemWidth = firstChild.offsetWidth;
+        const index = Math.round(el.scrollLeft / itemWidth);
+        const maxIndex = el.children.length - 1;
+        setActiveIndex(Math.min(index, maxIndex));
+      }
     }
-  }, [totalPages]);
+  }, []);
 
 
   const scroll = (direction: "left" | "right") => {
@@ -93,11 +98,15 @@ export function Certificates() {
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      const { clientWidth } = scrollRef.current;
-      scrollRef.current.scrollTo({
-        left: index * clientWidth,
-        behavior: "smooth",
-      });
+      const el = scrollRef.current;
+      const firstChild = el.firstElementChild as HTMLElement;
+      if (firstChild) {
+        const itemWidth = firstChild.offsetWidth;
+        el.scrollTo({
+          left: index * itemWidth,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
