@@ -89,7 +89,7 @@ export function Portfolio() {
 
           {/* Navigation Buttons (desktop only) */}
           {isSlider && (
-            <div className="hidden md:flex absolute right-0 bottom-0 gap-2">
+            <div className="hidden lg:flex absolute right-0 bottom-0 gap-2">
               <button
                 onClick={() => scroll("left")}
                 className="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-white dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 transition-colors shadow-sm"
@@ -113,8 +113,8 @@ export function Portfolio() {
           ref={scrollRef}
           onScroll={handleScroll}
           className={`
-            ${isSlider ? "flex overflow-x-auto snap-x snap-mandatory scrollbar-hide" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"}
-            touch-pan-y
+            ${isSlider ? "flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4 md:px-0" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"}
+            touch-auto scroll-pl-4 md:scroll-pl-0
           `}
           style={isSlider ? { scrollBehavior: "smooth" } : undefined}
         >
@@ -127,7 +127,7 @@ export function Portfolio() {
                 return (
                   <div
                     key={pageIndex}
-                    className="w-full shrink-0 snap-start grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="w-[85%] md:w-full shrink-0 snap-start grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pr-4 md:pr-4"
                   >
                     {pageItems.map((project: Project, idx: number) => {
                       const globalIndex = pageIndex * itemsPerPage + idx;
