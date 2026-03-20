@@ -2,8 +2,9 @@
 import {
   createContext,
   useContext,
-  useState,
+  useSyncExternalStore,
   ReactNode,
+  useCallback,
 } from "react";
 import { th, en } from "./dictionaries";
 
@@ -20,21 +21,27 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined,
 );
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("language") as Language;
-      if (saved && (saved === "th" || saved === "en")) return saved;
-    }
-    return "th";
-  });
+const subscribe = (onStoreChange: () => void) => {
+  window.addEventListener("storage", onStoreChange);
+  return () => window.removeEventListener("storage", onStoreChange);
+};
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("language", lang);
-    }
-  };
+const getSnapshot = () => (localStorage.getItem("language") as Language) || "th";
+const getServerSnapshot = () => "th" as Language;
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const language = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
+
+  const setLanguage = useCallback((lang: Language) => {
+    localStorage.setItem("language", lang);
+    // Dispatch a storage event manually because 'storage' event listener
+    // only triggers on other tabs/windows, not the current one.
+    window.dispatchEvent(new Event("storage"));
+  }, []);
 
   const dict = language === "en" ? en : th;
 

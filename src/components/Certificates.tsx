@@ -18,7 +18,16 @@ export function Certificates() {
 
   // Responsive: 1 item/page on mobile, 3 on desktop
   useEffect(() => {
-    const update = () => setItemsPerPage(window.innerWidth < 768 ? 1 : 3);
+    const update = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setItemsPerPage(1);
+      } else if (width < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(3);
+      }
+    };
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -73,19 +82,6 @@ export function Certificates() {
     }
   }, [totalPages]);
 
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      if (
-        isSlider &&
-        scrollRef.current &&
-        Math.abs(e.deltaY) > Math.abs(e.deltaX)
-      ) {
-        e.preventDefault();
-        scrollRef.current.scrollLeft += e.deltaY;
-      }
-    },
-    [isSlider],
-  );
 
   const scroll = (direction: "left" | "right") => {
     const newIndex =
@@ -109,7 +105,6 @@ export function Certificates() {
     <section
       id="certificates"
       className="py-24 bg-white dark:bg-slate-950"
-      style={{ contentVisibility: "auto" } as React.CSSProperties}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -149,10 +144,9 @@ export function Certificates() {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          onWheel={handleWheel}
           className={`
             ${isSlider ? "flex overflow-x-auto snap-x snap-mandatory scrollbar-hide" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"}
-            touch-pan-x
+            touch-pan-y
           `}
           style={isSlider ? { scrollBehavior: "smooth" } : undefined}
         >
@@ -231,11 +225,11 @@ const CertificateCard = memo(function CertificateCard({
       href={cert.file}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: (index % itemsPerPage) * 0.1 }}
-      className="group p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center gap-4 relative overflow-hidden cursor-pointer"
+      transition={{ duration: 0.4, delay: (index % itemsPerPage) * 0.05 }}
+      className="group p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4 relative overflow-hidden cursor-pointer"
     >
       <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
         <FileText size={32} />

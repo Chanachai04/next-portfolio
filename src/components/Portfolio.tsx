@@ -23,7 +23,16 @@ export function Portfolio() {
 
   // Responsive: 1 item/page on mobile, 3 on desktop
   useEffect(() => {
-    const update = () => setItemsPerPage(window.innerWidth < 768 ? 1 : 3);
+    const update = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setItemsPerPage(1);
+      } else if (width < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(3);
+      }
+    };
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -41,19 +50,6 @@ export function Portfolio() {
     }
   }, [totalPages]);
 
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      if (
-        isSlider &&
-        scrollRef.current &&
-        Math.abs(e.deltaY) > Math.abs(e.deltaX)
-      ) {
-        e.preventDefault();
-        scrollRef.current.scrollLeft += e.deltaY;
-      }
-    },
-    [isSlider],
-  );
 
   const scroll = (direction: "left" | "right") => {
     const newIndex =
@@ -77,7 +73,6 @@ export function Portfolio() {
     <section
       id="portfolio"
       className="py-24 bg-slate-50 dark:bg-slate-900/50"
-      style={{ contentVisibility: "auto" } as React.CSSProperties}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -117,10 +112,9 @@ export function Portfolio() {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          onWheel={handleWheel}
           className={`
             ${isSlider ? "flex overflow-x-auto snap-x snap-mandatory scrollbar-hide" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"}
-            touch-pan-x
+            touch-pan-y
           `}
           style={isSlider ? { scrollBehavior: "smooth" } : undefined}
         >
@@ -201,8 +195,8 @@ const ProjectCard = memo(function ProjectCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: (index % itemsPerPage) * 0.1 }}
       className="bg-white dark:bg-slate-950 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-shadow group flex flex-col relative"
