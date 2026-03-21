@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useLanguage, Dictionary } from "@/lib/i18n";
 import Image from "next/image";
+import Link from "next/link";
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState, useCallback, useEffect, memo } from "react";
 
@@ -202,6 +203,10 @@ const ProjectCard = memo(function ProjectCard({
   const DESC_MAX_LENGTH = 80;
   const isLong = project.description.length > DESC_MAX_LENGTH;
 
+  const isInternal = project.demo.startsWith('/');
+  const LinkComponent = isInternal ? Link : "a";
+  const linkProps = isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -210,10 +215,9 @@ const ProjectCard = memo(function ProjectCard({
       transition={{ duration: 0.5, delay: (index % itemsPerPage) * 0.1 }}
       className="bg-white dark:bg-slate-950 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-shadow group flex flex-col relative"
     >
-      <a
+      <LinkComponent
         href={project.demo}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...linkProps}
         className="absolute inset-0 z-10"
         aria-label={`View project ${project.title}`}
       />
@@ -269,14 +273,13 @@ const ProjectCard = memo(function ProjectCard({
           ))}
         </div>
         <div className="flex items-center gap-4 border-t border-slate-100 dark:border-slate-800 pt-4 pointer-events-auto">
-          <a
+          <LinkComponent
             href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...linkProps}
             className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400 transition-colors"
           >
-            <ExternalLink size={16} /> Live Demo
-          </a>
+            {isInternal ? <ChevronRight size={16} /> : <ExternalLink size={16} />} {isInternal ? "Details" : "Live Demo"}
+          </LinkComponent>
           <a
             href={project.github}
             target="_blank"

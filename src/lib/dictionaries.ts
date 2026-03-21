@@ -105,6 +105,15 @@ export const th = {
         github: "https://github.com/Chanachai04/next-money-share.git",
         demo: "https://money-share-swart.vercel.app/",
       },
+      {
+        title: "Money Tracking",
+        description:
+          "แอปพลิเคชัน Money Tracking สไตล์โมเดิร์น สวยงาม และใช้งานง่าย พัฒนาด้วย Flutter และ Node.js เพื่อให้คุณบันทึกรายรับ-รายจ่าย และจัดการการเงินส่วนตัวได้อย่างมีประสิทธิภาพ!",
+        tags: ["Flutter", "Node.js"],
+        image: "/projects/money-tracking/5.png",
+        github: "https://github.com/Chanachai04/flutter_money_tracking_app.git",
+        demo: "/projects/money-tracking",
+      },
     ],
   },
   contact: {
@@ -112,6 +121,31 @@ export const th = {
     lineId: "Line ID",
     github: "GitHub",
     email: "Email",
+  },
+  projectDetails: {
+    backToPortfolio: "กลับสู่หน้าผลงาน",
+    features: "ฟีเจอร์หลัก",
+    technologies: "เทคโนโลยีที่ใช้",
+    "money-tracking": {
+      title: "Money Tracking - จัดการการเงินส่วนตัว",
+      overview:
+        "แอปพลิเคชันรูปแบบ Mobile App ที่ช่วยให้คุณจดบันทึกรายรับ-รายจ่าย ประเมินสภาพคล่องทางการเงิน และบริหารเงินส่วนตัวได้อย่างมีประสิทธิภาพ ตัวแอปออกแบบมาให้ใช้งานง่าย รวดเร็ว และดีไซน์ทันสมัย",
+      featureList: [
+        "บันทึกรายรับและรายจ่ายประจำวันได้อย่างรวดเร็ว",
+        "สรุปยอดเงินคงเหลือ และดูสถิติแยกตามหมวดหมู่",
+        "ระบบ UI สไตล์โมเดิร์น ใช้งานง่ายบนมือถือ",
+        "เชื่อมต่อข้อมูลแบบเรียลไทม์",
+      ],
+      images: [
+        "/projects/money-tracking/1.png",
+        "/projects/money-tracking/2.png",
+        "/projects/money-tracking/3.png",
+        "/projects/money-tracking/4.png",
+        "/projects/money-tracking/5.png",
+        "/projects/money-tracking/6.png",
+        "/projects/money-tracking/7.png",
+      ],
+    },
   },
 };
 
@@ -222,6 +256,15 @@ export const en = {
         github: "https://github.com/Chanachai04/next-money-share.git",
         demo: "https://money-share-swart.vercel.app/",
       },
+      {
+        title: "Money Tracking",
+        description:
+          "A modern, beautiful, and easy-to-use Money Tracking application built with Flutter and Node.js to help you track your income and expenses and manage your personal finances efficiently!",
+        tags: ["Flutter", "Node.js"],
+        image: "/projects/money-tracking/5.png",
+        github: "https://github.com/Chanachai04/flutter_money_tracking_app.git",
+        demo: "/projects/money-tracking",
+      },
     ],
   },
   contact: {
@@ -229,5 +272,28 @@ export const en = {
     lineId: "Line ID",
     github: "GitHub",
     email: "Email",
+  },
+  projectDetails: {
+    backToPortfolio: "Back to Portfolio",
+    features: "Key Features",
+    technologies: "Technologies Used",
+    "money-tracking": {
+      title: "Money Tracking - Personal Finance",
+      overview:
+        "A Mobile App designed to help you track your income and expenses, evaluate your financial health, and manage your personal finances efficiently. It features a fast, easy-to-use, and modern UI.",
+      featureList: [
+        "Quickly log daily income and expenses",
+        "View balance summaries and statistics by category",
+        "Modern and intuitive mobile UI",
+        "Real-time data synchronization",
+      ],
+      images: [
+        "/projects/money-tracking/1.png",
+        "/projects/money-tracking/2.png",
+        "/projects/money-tracking/3.png",
+        "/projects/money-tracking/4.png",
+        "/projects/money-tracking/5.png",
+      ],
+    },
   },
 };
