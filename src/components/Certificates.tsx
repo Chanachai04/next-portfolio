@@ -36,27 +36,27 @@ export function Certificates() {
   const certificateFiles = [
     {
       name: "Word 2019",
-      category: "MOS Olympic Thailand Competition 2025",
+      category: "Microsoft Office Specialist",
       file: "/certificates/word-2019.pdf",
     },
     {
-      name: "Microsoft Office Specialist - Associate (Office 2019)",
-      category: "MOS Olympic Thailand Competition 2025",
+      name: "Microsoft Office Specialist - Associate",
+      category: "Microsoft Office Specialist - Associate",
       file: "/certificates/microsoft-office-specialist-associate-office-2019.pdf",
     },
     {
-      name: "Excel 2019",
-      category: "MOS Olympic Thailand Competition 2024",
+      name: "Excel 2019 Associate",
+      category: "Microsoft Office Specialist",
       file: "/certificates/excel-2019.pdf",
     },
     {
       name: "Excel 2019 Expert",
-      category: "MOS Olympic Thailand Competition 2024",
+      category: "Microsoft Office Specialist",
       file: "/certificates/excel-2019-expert.pdf",
     },
     {
-      name: "PowerPoint 2019",
-      category: "MOS Olympic Thailand Competition 2024",
+      name: "PowerPoint 2019 Associate",
+      category: "Microsoft Office Specialist",
       file: "/certificates/powerpoint-2019.pdf",
     },
     {
