@@ -127,7 +127,7 @@ export const th = {
         title: "Expense Assistant",
         description:
           "แอปพลิเคชันจัดการรายรับ-รายจ่ายที่มาพร้อมกับระบบ AI อัจฉริยะ ช่วยให้คุณบันทึกข้อมูลได้ง่ายผ่านการแชทหรือสแกนสลิปโอนเงิน พร้อมการสรุปข้อมูลทางการเงินที่สวยงามและเข้าใจง่าย",
-        tags: ["React Native", "Python"],
+        tags: ["React Native", "Python", "AI"],
         image: "/projects/expense-app/3.png",
         github: "https://github.com/Chanachai04/rn-expense-app.git",
         demo: "/projects/expense-app",
@@ -348,7 +348,7 @@ export const en = {
         title: "Expense Assistant",
         description:
           "A smart expense management application with integrated AI. Easily track your finances by chatting with the AI or scanning payment slips, featuring beautiful and intuitive financial summaries.",
-        tags: ["React Native", "Python"],
+        tags: ["React Native", "Python", "AI"],
         image: "/projects/expense-app/3.png",
         github: "https://github.com/Chanachai04/rn-expense-app.git",
         demo: "/projects/expense-app",
